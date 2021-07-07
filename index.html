@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="src/styles.css" />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <script
+      src="https://kit.fontawesome.com/92d9e2dd58.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <title>W2 HWK CHELY</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="card">
+        <div class="card-body" id="head">WEATHER °C/ °F</div>
+        <div class="row">
+          <div class="col-md-8">
+            <div class="card-searchcity">
+              <form id="cityInput">
+                <input
+                  type="search"
+                  id="city-search"
+                  placeholder="Enter a city"
+                />
+                <input type="submit" value="Search" />
+              </form>
+              <ul>
+                <li id="city">Mexico</li>
+
+                <li id="date"></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="col-md-2">
+            <div id="now-temperature">21 °C</div>
+            <i class="fas fa-cloud-sun cloudy"></i>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body weekdays-temperature">
+          <div class="row">
+            <div class="col-2">
+              NOW<br />
+              ☁️<br />
+              21°C
+            </div>
+            <div class="col-2">
+              NOW<br />
+              ☁️<br />
+              21°C
+            </div>
+            <div class="col-2">
+              NOW<br />
+              ☁️<br />
+              21°C
+            </div>
+            <div class="col-2">
+              NOW<br />
+              ☁️<br />
+              21°C
+            </div>
+            <div class="col-2">
+              NOW<br />
+              ☁️<br />
+              21°C
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body days">
+          <div class="row">
+            <div class="col-6">
+              MONDAY<br />
+              TUESDAY <br />
+              WEDNESDAY <br />
+              THURSDAY<br />
+              FRIDAY<br />
+              SATURDAY<br />
+              SUNDAY<br />
+            </div>
+            <div class="col-4">
+              🌤️<br />
+              🌤️ <br />
+              🌤️ <br />
+              🌥️<br />
+              🌥️<br />
+              🌧️<br />
+              🌧️<br />
+            </div>
+            <div class="col-1">
+              27 <br />
+              27 <br />
+              26 <br />
+              25 <br />
+              24 <br />
+              24 <br />
+              24 <br />
+            </div>
+            <div class="col-1">
+              12 <br />
+              12 <br />
+              13 <br />
+              11 <br />
+              11 <br />
+              11<br />
+              12 <br />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="src/index.js"></script>
+  </body>
+</html>

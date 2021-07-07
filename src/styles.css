@@ -1,0 +1,22 @@
+.card {
+  width: 800px;
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+}
+ul {
+  list-style-type: none;
+}
+.cloudy {
+  font-size: 60px;
+}
+.now-temperature {
+  font-size: 20px;
+}
+.days {
+  text-align: left;
+  margin-left: 40px;
+}
+.weekdays-temperature {
+  margin-left: 80px;
+}

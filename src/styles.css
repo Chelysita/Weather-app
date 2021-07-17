@@ -24,3 +24,6 @@ a {
   text-align: center;
   display: block;
 }
+h4 {
+  text-transform: capitalize;
+}

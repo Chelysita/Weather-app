@@ -14,7 +14,7 @@ function formatDate(now) {
     "September",
     "October",
     "November",
-    "December"
+    "December",
   ];
   let currentMonth = months[now.getMonth()];
   let currentDate = now.getDate();
@@ -27,9 +27,8 @@ let date = document.querySelector("#date");
 date.innerHTML = formatDate(now);
 
 function showTemperature(response) {
-  //alert(`The temperature in Sidney is ${temperature} °C`);
-  //let descriptionStatus=(response.data.weather[0].description);
-  //alert(`${descriptionStatus}`);
+  let descriptionElement = document.querySelector("#description");
+  descriptionElement.innerHTML = response.data.weather[0].description;
   let replaceh1 = document.querySelector("#city");
   replaceh1.innerHTML = response.data.name;
   document.querySelector("#now-temperature").innerHTML = `${Math.round(

@@ -23,9 +23,9 @@
   <body>
     <div class="container">
       <div class="card">
-        <div class="card-body" id="head">WEATHER °C/ °F</div>
+        <h2 class="card-body" id="head">WEATHER FORECAST</h2>
         <div class="row">
-          <div class="col-md-8">
+          <div class="col-md-5">
             <div class="card-searchcity">
               <form id="cityInput">
                 <input
@@ -42,10 +42,18 @@
               </ul>
             </div>
           </div>
-
           <div class="col-md-2">
-            <div id="now-temperature">21 °C</div>
+            <h4 id="now-temperature">21 °C</h4>
+            <h4 id="description">Cloudy</h4>
+          </div>
+          <div class="col-md-2">
             <i class="fas fa-cloud-sun cloudy"></i>
+          </div>
+          <div class="col-md-3">
+            <ul>
+              <li>Precipitacion:</li>
+              <li>Wind:</li>
+            </ul>
           </div>
         </div>
       </div>

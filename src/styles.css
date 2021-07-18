@@ -23,10 +23,23 @@ ul {
 a {
   text-align: center;
   display: block;
+  text-decoration: none;
+  text-decoration-line: none;
+  color: black;
 }
 h5 {
   text-transform: capitalize;
 }
 .extras {
   text-align: left;
+}
+strong {
+  text-align: left;
+}
+.weather-temp {
+  text-decoration: none;
+}
+.weather-temp .units:hover {
+  position: relative;
+  text-decoration: none;
 }

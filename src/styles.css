@@ -27,3 +27,6 @@ a {
 h4 {
   text-transform: capitalize;
 }
+.extras {
+  text-align: left;
+}

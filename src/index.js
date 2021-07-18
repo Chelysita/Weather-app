@@ -1,5 +1,14 @@
-let now = new Date();
-function formatDate(now) {
+function formatDate(timestamp) {
+  let now = new Date(timestamp);
+  let hours = now.getHours();
+  if (hours < 10) {
+    hours = `0${hours}`;
+  }
+  let minutes = now.getMinutes();
+
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
+  }
   let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   let currentDay = days[now.getDay()];
   let months = [
@@ -19,22 +28,23 @@ function formatDate(now) {
   let currentMonth = months[now.getMonth()];
   let currentDate = now.getDate();
   let currentYear = now.getFullYear();
-  let nowdate = `${currentDay}, ${currentMonth} ${currentDate}, ${currentYear}`;
+
+  let nowdate = `${currentDay}, ${currentMonth} ${currentDate}, ${currentYear} ${hours}:${minutes}`;
   return nowdate;
 }
 //console.log(formatDate(now));
-let date = document.querySelector("#date");
-date.innerHTML = formatDate(now);
 
 function showTemperature(response) {
+  console.log(response.data);
   let descriptionElement = document.querySelector("#description");
   descriptionElement.innerHTML = response.data.weather[0].description;
   let humidityElement = document.querySelector("#humidity");
   humidityElement.innerHTML = response.data.main.humidity;
   let windElement = document.querySelector("#wind");
   windElement.innerHTML = Math.round(response.data.wind.speed);
+  let date = document.querySelector("#date");
+  date.innerHTML = formatDate(response.data.dt * 1000);
   let replaceh1 = document.querySelector("#city");
-
   replaceh1.innerHTML = response.data.name;
   document.querySelector("#now-temperature").innerHTML = `${Math.round(
     response.data.main.temp

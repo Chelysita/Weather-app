@@ -43,3 +43,6 @@ strong {
   position: relative;
   text-decoration: none;
 }
+body {
+  background-color: pink;
+}

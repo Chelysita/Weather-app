@@ -22,12 +22,11 @@ ul {
 }
 a {
   text-align: center;
-  display: block;
   text-decoration: none;
   text-decoration-line: none;
   color: black;
 }
-h5 {
+h6 {
   text-transform: capitalize;
 }
 .extras {

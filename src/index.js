@@ -33,6 +33,31 @@ function formatDate(timestamp) {
   return nowdate;
 }
 //console.log(formatDate(now));
+function displayForecast() {
+  let forecastElement = document.querySelector("#forecast");
+  let forecastHTML = `<div class="row">`;
+  let days = ["Thu", "Fri", "Sat", "Sun"];
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `
+
+            
+            <div class="col-2">
+             <div class="weather-forecast-day">${day}</div> 
+              ☁️<br />
+              <div class="weather-forecast-temperatures">
+                <span class="forecast-max">21°C</span>
+                <span class="forecast-min">18°C</span>
+            
+            
+          </div>
+        </div>`;
+  });
+
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
 
 function showTemperature(response) {
   console.log(response.data);
@@ -78,7 +103,7 @@ function showCelciusTemperature(event) {
 }
 
 let celciusTemperature = null;
-
+displayForecast();
 let searchForm = document.querySelector("#cityInput");
 searchForm.addEventListener("submit", currentCity);
 

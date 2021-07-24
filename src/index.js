@@ -77,9 +77,39 @@ function displayForecast(response) {
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
 }
+
+function displayDayForecast() {
+  let dayForecastElement = document.querySelector("#dayForecast");
+  let dayForecastHTML = `<div class="row">`;
+  let dias = ["Thu", "Fri", "Sat"];
+  dias.forEach(function (dia) {
+    dayForecastHTML =
+      dayForecastHTML +
+      `
+            <div class="col-6">
+              <div class="day-weather-forecast">${dia}</div>
+              
+            </div>
+            <div class="col-4">
+              🌤️<br />
+             
+            </div>
+            <div class="col-1">
+              27 <br />
+              
+            </div>
+            <div class="col-1">
+              12 <br />
+              
+            </div>`;
+  });
+  dayForecastHTML = dayForecastHTML + `</div>`;
+  dayForecastElement.innerHTML = dayForecastHTML;
+}
+
 function getDailyForecast(coordinates) {
   let apikey = "cdc6f40eaa51d2e0ae19d310a7a3769c";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apikey}&unit=metric`;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apikey}&units=metric`;
   console.log(apiUrl);
   axios.get(apiUrl).then(displayForecast);
 }
@@ -135,7 +165,7 @@ function showCelciusTemperature(event) {
 }
 
 let celciusTemperature = null;
-
+displayDayForecast();
 let searchForm = document.querySelector("#cityInput");
 searchForm.addEventListener("submit", handleSubmit);
 

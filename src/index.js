@@ -37,13 +37,54 @@ function formatDate(timestamp) {
 function formatDay(timestamp) {
   let date = new Date(timestamp * 1000);
   let day = date.getDay();
-  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
 
   return days[day];
 }
 
+function formatHour(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let hour = date.getHours();
+  let hours = [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9",
+    "10",
+    "11",
+    "12",
+    "13",
+    "14",
+    "15",
+    "16",
+    "17",
+    "18",
+    "19",
+    "20",
+    "21",
+    "22",
+    "23",
+    "24",
+  ];
+
+  return hours[hour];
+}
+
 function displayForecast(response) {
-  let forecast = response.data.daily;
+  let forecast = response.data.hourly;
   let forecastElement = document.querySelector("#forecast");
   let forecastHTML = `<div class="row">`;
   forecast.forEach(function (forecastDay, index) {
@@ -54,19 +95,17 @@ function displayForecast(response) {
 
             
             <div class="col-2">
-             <div class="weather-forecast-day">${formatDay(
+             <div class="weather-forecast-day">${formatHour(
                forecastDay.dt
              )}</div> 
               <img src="http://openweathermap.org/img/wn/${
                 forecastDay.weather[0].icon
               }@2x.png" alt="" width="30"/>
-              <div class="weather-forecast-temperatures">
+              <div class="weather-forecast-temperature">
                 <span class="forecast-max">${Math.round(
-                  forecastDay.temp.max
+                  forecastDay.temp
                 )} °</span>
-                <span class="forecast-min">${Math.round(
-                  forecastDay.temp.min
-                )} °</span>
+                
             
             
           </div>
@@ -78,29 +117,40 @@ function displayForecast(response) {
   forecastElement.innerHTML = forecastHTML;
 }
 
-function displayDayForecast() {
+function displayDayForecast(response) {
+  let dayForecast = response.data.daily;
   let dayForecastElement = document.querySelector("#dayForecast");
   let dayForecastHTML = `<div class="row">`;
-  let dias = ["Thu", "Fri", "Sat"];
-  dias.forEach(function (dia) {
+  dayForecast.forEach(function (forecastDay) {
     dayForecastHTML =
       dayForecastHTML +
       `
             <div class="col-6">
-              <div class="day-weather-forecast">${dia}</div>
+              <div class="day-weather-forecast">${formatDay(
+                forecastDay.dt
+              )}</div>
               
             </div>
             <div class="col-4">
-              🌤️<br />
+              <img src="http://openweathermap.org/img/wn/${
+                forecastDay.weather[0].icon
+              }@2x.png" alt="" width="30"/>
              
             </div>
             <div class="col-1">
-              27 <br />
-              
+              <div class="weather-forecast-temperatures">
+                <span class="forecast-max">${Math.round(
+                  forecastDay.temp.max
+                )} °</span>
+                
+              </div>
             </div>
             <div class="col-1">
-              12 <br />
-              
+            <div class="weather-forecast-temperatures">
+              <span class="forecast-min">${Math.round(
+                forecastDay.temp.min
+              )} °</span>
+              </div>
             </div>`;
   });
   dayForecastHTML = dayForecastHTML + `</div>`;
@@ -112,6 +162,7 @@ function getDailyForecast(coordinates) {
   let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apikey}&units=metric`;
   console.log(apiUrl);
   axios.get(apiUrl).then(displayForecast);
+  axios.get(apiUrl).then(displayDayForecast);
 }
 
 function showTemperature(response) {
@@ -165,7 +216,6 @@ function showCelciusTemperature(event) {
 }
 
 let celciusTemperature = null;
-displayDayForecast();
 let searchForm = document.querySelector("#cityInput");
 searchForm.addEventListener("submit", handleSubmit);
 

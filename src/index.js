@@ -33,27 +33,45 @@ function formatDate(timestamp) {
   return nowdate;
 }
 //console.log(formatDate(now));
+
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+  return days[day];
+}
+
 function displayForecast(response) {
-  console.log(response.data.daily);
+  let forecast = response.data.daily;
   let forecastElement = document.querySelector("#forecast");
   let forecastHTML = `<div class="row">`;
-  let days = ["Thu", "Fri", "Sat", "Sun"];
-  days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 6) {
+      forecastHTML =
+        forecastHTML +
+        `
 
             
             <div class="col-2">
-             <div class="weather-forecast-day">${day}</div> 
-              ☁️<br />
+             <div class="weather-forecast-day">${formatDay(
+               forecastDay.dt
+             )}</div> 
+              <img src="http://openweathermap.org/img/wn/${
+                forecastDay.weather[0].icon
+              }@2x.png" alt="" width="30"/>
               <div class="weather-forecast-temperatures">
-                <span class="forecast-max">21°C</span>
-                <span class="forecast-min">18°C</span>
+                <span class="forecast-max">${Math.round(
+                  forecastDay.temp.max
+                )} °</span>
+                <span class="forecast-min">${Math.round(
+                  forecastDay.temp.min
+                )} °</span>
             
             
           </div>
         </div>`;
+    }
   });
 
   forecastHTML = forecastHTML + `</div>`;
@@ -91,13 +109,18 @@ function showTemperature(response) {
   getDailyForecast(response.data.coord);
 }
 
-function currentCity(event) {
-  event.preventDefault();
+function currentCity(city) {
   let apikey = "cdc6f40eaa51d2e0ae19d310a7a3769c";
-  let city = document.querySelector("#city-search").value;
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apikey}&units=metric`;
   axios.get(apiUrl).then(showTemperature);
 }
+
+function handleSubmit(event) {
+  event.preventDefault();
+  let city = document.querySelector("#city-search");
+  currentCity(city.value);
+}
+currentCity("Boston");
 function showFarenheitTemperature(event) {
   event.preventDefault();
   let temperatureElement = document.querySelector("#now-temperature");
@@ -114,7 +137,7 @@ function showCelciusTemperature(event) {
 let celciusTemperature = null;
 
 let searchForm = document.querySelector("#cityInput");
-searchForm.addEventListener("submit", currentCity);
+searchForm.addEventListener("submit", handleSubmit);
 
 let fLink = document.querySelector("#f-link");
 fLink.addEventListener("click", showFarenheitTemperature);
